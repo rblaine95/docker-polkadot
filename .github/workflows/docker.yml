@@ -16,6 +16,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PAT }}
+      - name: Login to Quay
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
       - name: Build image
         run: |
           docker build \
@@ -25,6 +31,7 @@ jobs:
       - name: Tag & Push image
         run: |
           GH_IMAGE=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          Q_IMAGE=quay.io/rblaine95/$IMAGE_NAME
 
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -39,5 +46,7 @@ jobs:
           echo VERSION=$VERSION
 
           docker tag $IMAGE_NAME $GH_IMAGE:$VERSION
+          docker tag $IMAGE_NAME $Q_IMAGE:$VERSION
 
           docker push $GH_IMAGE:$VERSION
+          docker push $Q_IMAGE:$VERSION
