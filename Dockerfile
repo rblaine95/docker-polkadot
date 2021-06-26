@@ -1,3 +1,6 @@
+###################
+# --- builder --- #
+###################
 FROM ghcr.io/rblaine95/rust AS builder
 
 ARG VERSION=0.9.7
@@ -13,6 +16,9 @@ RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION && \
     ./scripts/init.sh && \
     cargo build --release
 
+##################
+# --- runner --- #
+##################
 FROM ghcr.io/rblaine95/debian:10-slim
 
 RUN apt-get update && \
@@ -21,15 +27,16 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt && \
     useradd -ms /bin/bash dot && \
-    mkdir -p /home/dot/.local/share/polkadot && \
-    chown -R dot:dot /home/dot/.local/share/polkadot
+    mkdir -p /home/dot/.local/share /data && \
+    ln -s /data /home/dot/.local/share/polkadot && \
+    chown -R dot:dot /home/dot/.local/share && \
+    chown -R dot:dot /data
 
 COPY --from=builder /opt/polkadot/target/release/polkadot /usr/local/bin/polkadot
 
 USER dot
-
 WORKDIR /home/dot
-
-VOLUME /home/dot/.local/share/polkadot
+EXPOSE 30333 9933 9944
+VOLUME /data
 
 ENTRYPOINT [ "/usr/local/bin/polkadot" ]
