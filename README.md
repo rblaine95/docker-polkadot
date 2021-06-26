@@ -11,7 +11,7 @@ docker run \
   --restart=always \
   --net=host \
   --name=polkadot \
-  -v /path/to/polkadot:/home/dot/.local/share/polkadot \
+  -v /path/to/polkadot:/data \
   ghcr.io/rblaine95/polkadot ${EXTRA_POLKADOT_ARGS}
 ```
 
