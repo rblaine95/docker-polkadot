@@ -3,7 +3,7 @@
 ###################
 FROM ghcr.io/rblaine95/rust AS builder
 
-ARG VERSION=0.9.7
+ARG VERSION=0.9.8
 
 WORKDIR /opt
 
