@@ -23,6 +23,7 @@ FROM ghcr.io/rblaine95/debian:10-slim
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
+    apt-get install -y tini && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt && \
@@ -39,4 +40,4 @@ WORKDIR /home/dot
 EXPOSE 30333 9933 9944
 VOLUME /data
 
-ENTRYPOINT [ "/usr/local/bin/polkadot" ]
+ENTRYPOINT [ "tini", "--", "/usr/local/bin/polkadot" ]
