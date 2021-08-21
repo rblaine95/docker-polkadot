@@ -19,7 +19,7 @@ RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION && \
 ##################
 # --- runner --- #
 ##################
-FROM ghcr.io/rblaine95/debian:10-slim
+FROM ghcr.io/rblaine95/debian:11-slim
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
