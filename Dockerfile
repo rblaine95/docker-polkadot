@@ -1,9 +1,9 @@
 ###################
 # --- builder --- #
 ###################
-FROM ghcr.io/rblaine95/rust AS builder
+FROM rust:1.57 AS builder
 
-ARG VERSION=0.9.16
+ARG VERSION=0.9.17-rc4
 
 WORKDIR /opt
 
@@ -19,7 +19,7 @@ RUN cargo build --release
 ##################
 # --- runner --- #
 ##################
-FROM ghcr.io/rblaine95/debian:11-slim
+FROM debian:11-slim
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
