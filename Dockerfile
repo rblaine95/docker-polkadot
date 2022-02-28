@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM rust:1.57 AS builder
+FROM rust:1.58 AS builder
 
 ARG VERSION=0.9.17-rc4
 
