@@ -3,7 +3,7 @@
 ###################
 FROM rust:1.59 AS builder
 
-ARG VERSION=0.9.17-rc4
+ARG VERSION=0.9.18
 
 WORKDIR /opt
 
