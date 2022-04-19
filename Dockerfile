@@ -1,9 +1,9 @@
 ###################
 # --- builder --- #
 ###################
-FROM rust:1.59 AS builder
+FROM rust:1.60 AS builder
 
-ARG VERSION=0.9.18
+ARG VERSION=0.9.19
 
 WORKDIR /opt
 
