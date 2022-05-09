@@ -1,9 +1,9 @@
 ###################
 # --- builder --- #
 ###################
-FROM rust:1.60 AS builder
+FROM docker.io/rust:1.60 AS builder
 
-ARG VERSION=0.9.20
+ARG VERSION=0.9.21
 
 WORKDIR /opt
 
@@ -19,7 +19,7 @@ RUN cargo build --release
 ##################
 # --- runner --- #
 ##################
-FROM debian:11-slim
+FROM docker.io/debian:11-slim
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
