@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.60 AS builder
+FROM docker.io/rust:1.61 AS builder
 
 ARG VERSION=0.9.22
 
