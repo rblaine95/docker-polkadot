@@ -3,7 +3,7 @@
 ###################
 FROM docker.io/rust:1.61 AS builder
 
-ARG VERSION=0.9.22
+ARG VERSION=0.9.23
 
 WORKDIR /opt
 
