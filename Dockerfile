@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get -y dist-upgrade && \
     apt-get -y install build-essential git clang libclang-dev pkg-config libssl-dev
 
-RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION
+RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
 RUN cargo build --release
