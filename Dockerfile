@@ -3,14 +3,14 @@
 ###################
 FROM docker.io/rust:1.61 AS builder
 
-ARG VERSION=0.9.23
-
-WORKDIR /opt
-
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
-    apt-get -y install build-essential git clang libclang-dev pkg-config libssl-dev
+    apt-get -y install \
+        build-essential git clang \
+        libclang-dev pkg-config libssl-dev cmake
 
+WORKDIR /opt
+ARG VERSION=0.9.23
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
