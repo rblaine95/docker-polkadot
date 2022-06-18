@@ -12,8 +12,15 @@ docker run \
   --net=host \
   --name=polkadot \
   -v /path/to/polkadot:/data \
-  ghcr.io/rblaine95/polkadot ${EXTRA_POLKADOT_ARGS}
+  ghcr.io/rblaine95/polkadot \
+    --base-path=/data ${EXTRA_POLKADOT_ARGS}
 ```
+
+### Distroless nonroot
+This image uses a [Distroless](https://github.com/GoogleContainerTools/distroless) base image and runs as a nonroot user.  
+The nonroot user has a U/GID of `65532`.  
+If you are having IO permission issues then make sure that the persistent volume has permissions set to allow this user Read/Write access.  
+If using [Podman](https://podman.io/) - `podman unshare chown -R 65532:65532 /path/to/polkadot/storage`
 
 ### Where can I download the image?
 I'm using Github Actions to build and publish this image to:

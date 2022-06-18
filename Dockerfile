@@ -19,25 +19,13 @@ RUN cargo build --release
 ##################
 # --- runner --- #
 ##################
-FROM docker.io/debian:11-slim
-
-RUN apt-get update && \
-    apt-get dist-upgrade -y && \
-    apt-get install -y tini && \
-    apt-get clean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt && \
-    useradd -ms /bin/bash dot && \
-    mkdir -p /home/dot/.local/share /data && \
-    ln -s /data /home/dot/.local/share/polkadot && \
-    chown -R dot:dot /home/dot/.local/share && \
-    chown -R dot:dot /data
+FROM gcr.io/distroless/cc
 
 COPY --from=builder /opt/polkadot/target/release/polkadot /usr/local/bin/polkadot
 
-USER dot
-WORKDIR /home/dot
+USER nonroot
+WORKDIR /home/nonroot
 EXPOSE 30333 9933 9944
 VOLUME /data
 
-ENTRYPOINT [ "tini", "--", "/usr/local/bin/polkadot" ]
+ENTRYPOINT [ "/usr/local/bin/polkadot" ]
