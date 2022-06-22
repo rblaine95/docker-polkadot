@@ -25,7 +25,6 @@ If using [Podman](https://podman.io/) - `podman unshare chown -R 65532:65532 /pa
 ### Where can I download the image?
 I'm using Github Actions to build and publish this image to:
 * [ghcr.io/rblaine95/polkadot](https://ghcr.io/rblaine95/polkadot)
-* [quay.io/rblaine95/polkadot](https://quay.io/rblaine95/polkadot)
 
 ### I want to buy you a coffee
 This is just a hobby project for me, if you really want to buy me a coffee, thank you :)  
