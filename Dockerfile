@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.61 AS builder
+FROM docker.io/rust:1.62 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
