@@ -10,7 +10,7 @@ RUN apt-get update && \
         libclang-dev pkg-config libssl-dev cmake
 
 WORKDIR /opt
-ARG VERSION=0.9.24
+ARG VERSION=0.9.25
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
