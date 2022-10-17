@@ -1,16 +1,17 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.63 AS builder
+FROM docker.io/rust:1.64 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
     apt-get -y install \
         build-essential git clang \
-        libclang-dev pkg-config libssl-dev cmake
+        libclang-dev pkg-config libssl-dev cmake \
+        protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.29
+ARG VERSION=0.9.30
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
