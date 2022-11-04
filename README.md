@@ -16,8 +16,7 @@ docker run \
     --base-path=/data ${EXTRA_POLKADOT_ARGS}
 ```
 
-### Distroless nonroot
-This image uses a [Distroless](https://github.com/GoogleContainerTools/distroless) base image and runs as a nonroot user.  
+### Nonroot
 The nonroot user has a U/GID of `65532`.  
 If you are having IO permission issues then make sure that the persistent volume has permissions set to allow this user Read/Write access.  
 If using [Podman](https://podman.io/) - `podman unshare chown -R 65532:65532 /path/to/polkadot/storage`

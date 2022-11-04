@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.64 AS builder
+FROM docker.io/rust:1.65 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.30
+ARG VERSION=0.9.31
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
@@ -20,12 +20,14 @@ RUN cargo build --release
 ##################
 # --- runner --- #
 ##################
-FROM gcr.io/distroless/cc
+FROM debian:11
 
 COPY --from=builder /opt/polkadot/target/release/polkadot /usr/local/bin/polkadot
 
-USER nonroot
-WORKDIR /home/nonroot
+RUN addgroup --gid 65532 nonroot \
+    && adduser --system --uid 65532 --gid 65532 --home /home/nonroot nonroot
+
+USER 65532
 EXPOSE 30333 9933 9944
 VOLUME /data
 
