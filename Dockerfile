@@ -11,7 +11,7 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.31
+ARG VERSION=0.9.32
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
@@ -20,7 +20,7 @@ RUN cargo build --release
 ##################
 # --- runner --- #
 ##################
-FROM debian:11
+FROM debian:11-slim
 
 COPY --from=builder /opt/polkadot/target/release/polkadot /usr/local/bin/polkadot
 
