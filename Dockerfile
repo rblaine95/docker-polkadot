@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.65 AS builder
+FROM docker.io/rust:1.66 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.35
+ARG VERSION=0.9.36
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 RUN ./scripts/init.sh
