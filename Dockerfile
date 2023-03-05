@@ -10,6 +10,8 @@ RUN apt-get update && \
         libclang-dev pkg-config libssl-dev cmake \
         protobuf-compiler
 
+ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
+
 WORKDIR /opt
 ARG VERSION=0.9.39
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
