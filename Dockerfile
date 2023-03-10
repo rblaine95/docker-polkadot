@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.67 AS builder
+FROM docker.io/rust:1.68 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -10,12 +10,11 @@ RUN apt-get update && \
         libclang-dev pkg-config libssl-dev cmake \
         protobuf-compiler
 
-ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
-
 WORKDIR /opt
-ARG VERSION=0.9.39
+ARG VERSION=0.9.39-1
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
+ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 RUN ./scripts/init.sh
 RUN cargo build --release
 
