@@ -11,7 +11,7 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.39-1
+ARG VERSION=0.9.40
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
