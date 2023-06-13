@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.69 AS builder
+FROM docker.io/rust:1.70 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -11,10 +11,10 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.42
+ARG VERSION=0.9.43
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
-ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
+ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
 RUN ./scripts/init.sh
 RUN rustup target add wasm32-unknown-unknown
 RUN cargo build --release
@@ -22,7 +22,7 @@ RUN cargo build --release
 ##################
 # --- runner --- #
 ##################
-FROM docker.io/debian:11-slim
+FROM docker.io/debian:12-slim
 
 COPY --from=builder /opt/polkadot/target/release/polkadot /usr/local/bin/polkadot
 
