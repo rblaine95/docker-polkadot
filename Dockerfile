@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.70 AS builder
+FROM docker.io/rust:1.71 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=0.9.43
+ARG VERSION=1.0.0
 RUN git clone https://github.com/paritytech/polkadot.git -b v$VERSION --depth 1
 WORKDIR /opt/polkadot
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
