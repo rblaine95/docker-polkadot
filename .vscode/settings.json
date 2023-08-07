@@ -1,0 +1,6 @@
+{
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true
+}
