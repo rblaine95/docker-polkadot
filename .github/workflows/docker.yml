@@ -1,6 +1,15 @@
 name: Docker
 
-on: [workflow_dispatch, push]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -19,7 +28,7 @@ jobs:
           platforms: linux/${{ matrix.arch }}
           push: false
           cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-to: type=gha
           context: .
   package:
     needs: [build]
@@ -53,5 +62,5 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           push: true
           cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-to: type=gha
           context: .
