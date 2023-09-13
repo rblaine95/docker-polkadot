@@ -11,7 +11,7 @@ RUN apt-get update && \
         protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=master
+ARG VERSION=polkadot-v1.1.0
 RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
 WORKDIR /opt/polkadot-sdk
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
