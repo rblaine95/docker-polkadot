@@ -6,9 +6,7 @@ FROM docker.io/rust:1.73 AS builder
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
     apt-get -y install \
-        build-essential git clang \
-        libclang-dev pkg-config libssl-dev cmake \
-        protobuf-compiler
+      libclang-dev protobuf-compiler
 
 WORKDIR /opt
 ARG VERSION=polkadot-v1.2.0
