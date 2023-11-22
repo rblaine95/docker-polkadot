@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.73 AS builder
+FROM docker.io/rust:1.74 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -9,7 +9,7 @@ RUN apt-get update && \
       libclang-dev protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=polkadot-v1.3.0
+ARG VERSION=v1.4.0
 RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
 WORKDIR /opt/polkadot-sdk
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
