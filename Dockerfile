@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.74 AS builder
+FROM docker.io/rust:1.75 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -28,7 +28,16 @@ RUN addgroup --gid 65532 nonroot \
     && adduser --system --uid 65532 --gid 65532 --home /home/nonroot nonroot
 
 USER 65532
-EXPOSE 30333 9933 9944
+
+# P2P
+EXPOSE 30333
+# RPC
+EXPOSE 9933
+# WS
+EXPOSE 9944
+# Prometheus
+EXPOSE 9615
+
 VOLUME /data
 
 ENTRYPOINT [ "/usr/local/bin/polkadot" ]
