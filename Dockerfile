@@ -9,7 +9,7 @@ RUN apt-get update && \
       libclang-dev protobuf-compiler
 
 WORKDIR /opt
-ARG VERSION=polkadot-v1.6.0
+ARG VERSION=polkadot-v1.7.0
 RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
 WORKDIR /opt/polkadot-sdk
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
