@@ -8,13 +8,14 @@ RUN apt-get update && \
     apt-get -y install \
       libclang-dev protobuf-compiler
 
-WORKDIR /opt
-ARG VERSION=polkadot-v1.10.0
-RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
-WORKDIR /opt/polkadot-sdk
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
 RUN rustup target add wasm32-unknown-unknown
 RUN rustup component add rust-src
+
+WORKDIR /opt
+ARG VERSION=polkadot-v1.11.0
+RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
+WORKDIR /opt/polkadot-sdk
 RUN cargo build --release --package polkadot
 
 ##################
