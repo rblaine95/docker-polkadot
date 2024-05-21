@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.77 AS builder
+FROM docker.io/rust:1.78 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -13,7 +13,7 @@ RUN rustup target add wasm32-unknown-unknown
 RUN rustup component add rust-src
 
 WORKDIR /opt
-ARG VERSION=polkadot-v1.11.0
+ARG VERSION=polkadot-v1.12.0
 RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
 WORKDIR /opt/polkadot-sdk
 RUN cargo build --release --package polkadot
