@@ -53,7 +53,7 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
+            type=ref,event=tag
       - name: Package and Push
         uses: docker/build-push-action@v6
         with:
