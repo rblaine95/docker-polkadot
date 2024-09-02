@@ -27,8 +27,10 @@ jobs:
         with:
           platforms: linux/${{ matrix.arch }}
           push: false
-          cache-from: type=gha
-          cache-to: type=gha
+          cache-from: |
+            type=gha,scope=docker-build-${{ matrix.arch }}
+          cache-to: |
+            type=gha,mode=max,scope=docker-build-${{ matrix.arch }}
           context: .
   package:
     needs: [build]
@@ -61,6 +63,9 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
-          cache-from: type=gha
-          cache-to: type=gha
+          cache-from: |
+            type=gha,scope=docker-package
+            type=gha,scope=docker-build-amd64
+          cache-to: |
+            type=gha,mode=max,scope=docker-package
           context: .
