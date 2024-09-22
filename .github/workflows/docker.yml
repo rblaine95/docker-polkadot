@@ -16,10 +16,9 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     strategy:
       matrix:
-        arch: [amd64]
         # One day, when ARM based Github Hosted Runners are GA...
         # https://github.com/github/roadmap/issues/970
-        # arch: [amd64, arm64]
+        arch: [amd64, arm64]
         include:
           - arch: amd64
             runs-on: blacksmith-4vcpu-ubuntu-2204
