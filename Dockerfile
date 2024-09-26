@@ -23,10 +23,10 @@ RUN cargo build --release --package polkadot
 ##################
 FROM docker.io/debian:12-slim
 
-COPY --from=builder /opt/polkadot-sdk/target/release/polkadot /usr/local/bin/polkadot
-
 RUN addgroup --gid 65532 nonroot \
-    && adduser --system --uid 65532 --gid 65532 --home /home/nonroot nonroot
+  && adduser --system --uid 65532 --gid 65532 --home /home/nonroot nonroot
+
+COPY --from=builder /opt/polkadot-sdk/target/release/polkadot /usr/local/bin/polkadot
 
 USER 65532
 
