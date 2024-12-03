@@ -44,7 +44,7 @@ You should read their [Lightpaper](https://polkadot.network/Polkadot-lightpaper.
 * [/r/dot](https://www.reddit.com/r/dot)
 
 
-[github-tag-badge]: https://img.shields.io/github/v/tag/rblaine95/docker_polkadot "Github tag (latest by date)"
-[github-tag-link]: https://github.com/rblaine95/docker_polkadot/tags
-[github-actions-badge]: https://img.shields.io/github/actions/workflow/status/rblaine95/docker_polkadot/docker.yml?branch=master "Github Workflow Status (master)"
-[github-actions-link]: https://github.com/rblaine95/docker_polkadot/actions?query=workflow%3ADocker
+[github-tag-badge]: https://img.shields.io/github/v/tag/rblaine95/docker-polkadot "Github tag (latest by date)"
+[github-tag-link]: https://github.com/rblaine95/docker-polkadot/tags
+[github-actions-badge]: https://img.shields.io/github/actions/workflow/status/rblaine95/docker-polkadot/docker.yml?branch=master "Github Workflow Status (master)"
+[github-actions-link]: https://github.com/rblaine95/docker-polkadot/actions?query=workflow%3ADocker
