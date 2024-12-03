@@ -13,7 +13,7 @@ docker run \
   --net=host \
   --name=polkadot \
   -v /path/to/polkadot:/data \
-  ghcr.io/rblaine95/polkadot \
+  ghcr.io/bunkerlab-net/polkadot \
     --base-path=/data ${EXTRA_POLKADOT_ARGS}
 ```
 
@@ -26,7 +26,7 @@ If using [Podman](https://podman.io/) - `podman unshare chown -R 65532:65532 /pa
 
 ### Where can I download the image?
 I'm using Github Actions to build and publish this image to:
-* [ghcr.io/rblaine95/polkadot](https://ghcr.io/rblaine95/polkadot)
+* [ghcr.io/bunkerlab-net/polkadot](https://ghcr.io/bunkerlab-net/polkadot)
 
 ### I want to buy you a coffee
 This is just a hobby project for me, if you really want to buy me a coffee, thank you :)
@@ -44,7 +44,7 @@ You should read their [Lightpaper](https://polkadot.network/Polkadot-lightpaper.
 * [/r/dot](https://www.reddit.com/r/dot)
 
 
-[github-tag-badge]: https://img.shields.io/github/v/tag/rblaine95/docker_polkadot "Github tag (latest by date)"
-[github-tag-link]: https://github.com/rblaine95/docker_polkadot/tags
-[github-actions-badge]: https://img.shields.io/github/actions/workflow/status/rblaine95/docker_polkadot/docker.yml?branch=master "Github Workflow Status (master)"
-[github-actions-link]: https://github.com/rblaine95/docker_polkadot/actions?query=workflow%3ADocker
+[github-tag-badge]: https://img.shields.io/github/v/tag/bunkerlab-net/docker-polkadot "Github tag (latest by date)"
+[github-tag-link]: https://github.com/bunkerlab-net/docker-polkadot/tags
+[github-actions-badge]: https://img.shields.io/github/actions/workflow/status/bunkerlab-net/docker-polkadot/docker.yml?branch=master "Github Workflow Status (master)"
+[github-actions-link]: https://github.com/bunkerlab-net/docker-polkadot/actions?query=workflow%3ADocker
