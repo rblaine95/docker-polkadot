@@ -1,7 +1,7 @@
 ###################
 # --- builder --- #
 ###################
-FROM docker.io/rust:1.82 AS builder
+FROM docker.io/rust:1.83 AS builder
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -16,7 +16,7 @@ WORKDIR /opt
 ARG VERSION=polkadot-stable2409-2
 RUN git clone https://github.com/paritytech/polkadot-sdk.git -b $VERSION --depth 1
 WORKDIR /opt/polkadot-sdk
-RUN cargo build --release --package polkadot
+RUN cargo build --locked --release --package polkadot
 
 ##################
 # --- runner --- #
@@ -27,6 +27,10 @@ RUN addgroup --gid 65532 nonroot \
   && adduser --system --uid 65532 --gid 65532 --home /home/nonroot nonroot
 
 COPY --from=builder /opt/polkadot-sdk/target/release/polkadot /usr/local/bin/polkadot
+# COPY --from=builder /opt/polkadot-sdk/target/release/polkadot-execute-worker /usr/local/bin/polkadot-execute-worker
+# COPY --from=builder /opt/polkadot-sdk/target/release/polkadot-parachain /usr/local/bin/polkadot-parachain
+# COPY --from=builder /opt/polkadot-sdk/target/release/polkadot-prepare-worker /usr/local/bin/polkadot-prepare-worker
+# COPY --from=builder /opt/polkadot-sdk/target/release/polkadot-substrate-node /usr/local/bin/polkadot-substrate-node
 
 USER 65532
 
