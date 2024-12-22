@@ -1,0 +1,49 @@
+name: polkadot
+
+services:
+  # Automatically update running containers
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower:latest
+    restart: unless-stopped
+    command:
+      - --interval
+      - "3600"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # Automatically restart unhealthy containers
+  autoheal:
+    container_name: autoheal
+    image: willfarrell/autoheal
+    restart: unless-stopped
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: all
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  polkadot:
+    image: ghcr.io/bunkerlab-net/polkadot:stable2412
+    container_name: polkadot
+    command:
+      - --base-path
+      - /data
+      - --chain
+      - polkadot
+      - --rpc-external
+      - --rpc-cors
+      - all
+      - --rpc-methods
+      - Safe
+      - --prometheus-external
+      - --discover-local
+      - --log
+      - info
+    restart: unless-stopped
+    ports:
+      - 30333:30333 # p2p
+      - 9933:9933 # RPC
+      - 9944:9944 # WS
+      - 9615:9615 # Prometheus
+    volumes:
+      - ./polkadot-data:/data
