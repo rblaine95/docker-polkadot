@@ -7,8 +7,7 @@ My personal unprivileged Polkadot Docker image.
 
 Usage:
 ```sh
-docker run \
-  -dit \
+docker run -d \
   --restart=always \
   --net=host \
   --name=polkadot \
